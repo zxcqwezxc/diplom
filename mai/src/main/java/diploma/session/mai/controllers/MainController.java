@@ -25,10 +25,4 @@ public class MainController {
 		return "addItem";
 	}
 
-	// @GetMapping("/suppliers")
-	// public String suppliers( Model model) {
-	// 	model.addAttribute("title", "Поставщики");
-	// 	return "suppliers";
-	// }
-
 }
