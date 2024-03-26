@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: MaiApplication
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/stock
+    username: postgres
+    password: "123"
+    
+management.endpoints.web.exposure.include=*
