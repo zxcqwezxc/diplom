@@ -28,7 +28,7 @@ public class SuppliersController {
 
     @GetMapping("/supplier/{id}")
     public String showSupplierPage(@PathVariable int id, Model model) {
-        int supplierId = (id); // Преобразование строки в Long
+        int supplierId = (id);
 
         // Получение информации о поставщике по его ID
         Supplier supplier = supplierService.getSupplierById(supplierId);
@@ -41,9 +41,10 @@ public class SuppliersController {
 
         // Передача информации о поставщике в модель
         model.addAttribute("supplier", supplier);
+        model.addAttribute("products", supplierService.getAllSupplierGoods(supplierId));
 
     // Возвращаем HTML-шаблон страницы поставщика
     return "supplier"; // Имя вашего HTML-шаблона для страницы поставщика
-}
+    }
 
 }

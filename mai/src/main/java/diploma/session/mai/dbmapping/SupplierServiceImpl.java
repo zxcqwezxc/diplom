@@ -17,4 +17,8 @@ public class SupplierServiceImpl implements SupplierService {
     public Supplier getSupplierById(int id) {
         return supplierRepository.getSupplierById(id);
     }
+
+    public List<SupplierGoods> getAllSupplierGoods(int supplierId) {
+        return supplierRepository.getAllSupplierGoods(supplierId);
+    }
 }

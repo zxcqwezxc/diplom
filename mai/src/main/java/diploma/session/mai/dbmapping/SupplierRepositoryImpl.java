@@ -53,4 +53,19 @@ public class SupplierRepositoryImpl implements SupplierRepository {
             id
         );
     }
+
+    //TODO поправить запрос, чтобы была защита от SQL иньекций
+    @Override
+    public List<SupplierGoods> getAllSupplierGoods(int supplierId) {
+        return jdbcTemplate.query(
+                "SELECT id, supplier_id, name, description, price FROM supplier_goods WHERE supplier_id = " + supplierId,
+                (resultSet, rowNum) -> new SupplierGoods(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("supplier_id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("description"),
+                        resultSet.getBigDecimal("price")
+                )
+        );
+    }
 }

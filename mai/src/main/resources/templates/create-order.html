@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание заказа</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header th:insert="~{blocks/header :: header}"></header>
+    <div class="container">
+        <h2 class="text-center mb-4">Создание заказа</h2>
+        <form th:action="@{/submit-order}" method="post">
+            <div class="form-group">
+                <label for="quantity">Количество:</label>
+                <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1" required>
+            </div>
+            <div class="form-group">
+                <label for="productName">Наименование товара:</label>
+                <input type="text" id="productName" name="productName" class="form-control" th:value="${productName}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="warehouseId">Склад:</label>
+                <select id="warehouseId" name="warehouseId" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="storageCell">Ячейка хранения:</label>
+                <select id="storageCell" name="storageCell" class="form-control">
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="A4">A4</option>
+                    <option value="A5">A5</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="B3">B3</option>
+                    <option value="B4">B4</option>
+                    <option value="B5">B5</option>
+                    <option value="C1">C1</option>
+                    <option value="C2">C2</option>
+                    <option value="C3">C3</option>
+                    <option value="C4">C4</option>
+                    <option value="C5">C5</option>
+                    <option value="D1">D1</option>
+                    <option value="D2">D2</option>
+                    <option value="D3">D3</option>
+                    <option value="D4">D4</option>
+                    <option value="D5">D5</option>
+                    <option value="E1">E1</option>
+                    <option value="E2">E2</option>
+                    <option value="E3">E3</option>
+                    <option value="E4">E4</option>
+                    <option value="E5">E5</option>
+                </select>
+            </div>
+
+            <input type="hidden" id="productId" name="productId" th:value="${productId}">
+            <input type="hidden" id="supplierId" name="supplierId" th:value="${supplierId}">
+            <!-- Можно добавить другие поля по желанию -->
+            <button type="submit" class="btn btn-primary" formaction="/submit-order-and-redirect">Создать заказ</button>
+        </form>
+    </div>
+
+    <!-- Подключение Bootstrap JS (необходимо только для некоторых компонентов) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <div th:insert="~{blocks/footer :: footer}"></div>
+
+    <!-- JavaScript для отображения всплывающего уведомления -->
+    <script>
+        // Функция для отображения всплывающего уведомления
+        function showNotification(message) {
+            alert(message); // Используйте другие библиотеки или кастомные решения для более красивого уведомления
+        }
+    </script>
+</body>
+</html>

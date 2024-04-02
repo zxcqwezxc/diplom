@@ -5,4 +5,5 @@ import java.util.List;
 public interface SupplierRepository {
     List<Supplier> findAll();
     Supplier getSupplierById(int id);
+    List<SupplierGoods> getAllSupplierGoods(int supplierId);
 }
