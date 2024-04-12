@@ -35,6 +35,18 @@ public class OrdersController {
         }
     }
 
+    @GetMapping("/allOrders")
+    public String showAllOrders( 
+        Model model) {
+        try {
+            model.addAttribute("orders", ordersService.getAllOrders());
+            return "allOrders";
+        } catch (ItemNotFoundException e) {
+            return "error";
+        }
+    }
+
+
     @PostMapping("/submit-order-and-redirect")
     public RedirectView submitOrderAndRedirect(
         @RequestParam("warehouseId") int warehouseId, 

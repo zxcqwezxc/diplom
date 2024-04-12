@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Orders</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header th:insert="~{blocks/header :: header}"></header>
+    <header>
+        <!-- Здесь может быть ваш заголовок страницы -->
+        <h1 class="text-center mt-5">Текущие заказы</h1>
+    </header>
+
+    <main class="container mt-3">
+        <!-- Таблица для отображения текущих заказов -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID Заказа</th>
+                    <th scope="col">ID Поставщика</th>
+                    <th scope="col">ID Товара</th>
+                    <th scope="col">ID Склада</th>
+                    <th scope="col">Дата заказа</th>
+                    <th scope="col">Кол-во товара</th>
+                    <th scope="col">Цена за 1 шт.</th>
+                    <th scope="col">Общая цена</th>
+                    <th scope="col">Ячейка склада</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Использование Thymeleaf для отображения данных о заказах -->
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.orderId}">1</td>
+                    <td th:text="${order.supplierId}">123</td>
+                    <td th:text="${order.goodId}">456</td>
+                    <td th:text="${order.warehouseId}">789</td>
+                    <td th:text="${order.orderDate}">2024-04-12</td>
+                    <td th:text="${order.quantity}">10</td>
+                    <td th:text="${order.price}">$50.00</td>
+                    <td th:text="${order.totalAmount}">$500.00</td>
+                    <td th:text="${order.storageCell}">A1</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <div th:insert="~{blocks/footer :: footer}"></div>
+    <!-- Подключение Bootstrap JS (необходимо только для некоторых компонентов) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

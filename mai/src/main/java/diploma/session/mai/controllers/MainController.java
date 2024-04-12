@@ -24,5 +24,10 @@ public class MainController {
 		model.addAttribute("title", "Добавление товара");
 		return "addItem";
 	}
+	@GetMapping("/map")
+	public String map( Model model) {
+		model.addAttribute("title", "Карта");
+		return "map";
+	}
 
 }
