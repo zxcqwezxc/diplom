@@ -121,5 +121,11 @@ public class OrdersRepositoryImpl implements OrdersRepository {
         params.addValue("productId", productId);
         return jdbcTemplate.queryForObject(SQL_GET_PRODUCT_NAME, params, String.class);
     }
+
+    @Override
+    public List<String> getOrdersCoordinates() {
+        String SQL_GET_ORDERS_COORDINATES = "SELECT coordinates FROM order_details";
+        return jdbcTemplate.query(SQL_GET_ORDERS_COORDINATES, (rs, rowNum) -> rs.getString("coordinates"));
+    }
     
 }

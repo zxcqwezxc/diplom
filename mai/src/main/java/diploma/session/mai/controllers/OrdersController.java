@@ -1,5 +1,7 @@
 package diploma.session.mai.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,4 +68,17 @@ public class OrdersController {
         }
         // Перенаправьте на главную страницу или другую страницу по вашему выбору
     }
+
+    @GetMapping("/map")
+    public String map(Model model) {
+        // Получение координат заказов из базы данных
+        List<String> orderCoordinates = ordersService.getOrdersCoordinates(); // Здесь orderService.getOrdersCoordinates() должен возвращать список строк с координатами
+        model.addAttribute("title", "Карта");
+        // Передача координат в модель для использования в HTML-шаблоне
+        model.addAttribute("orderCoordinates", orderCoordinates);
+
+        return("map");
+    }
+    
+
 }

@@ -9,4 +9,5 @@ public interface OrdersRepository {
     List<Order> getAllOrders();
     void makeOrder(int supplierId, int productId, int quantity, int warehouseId, String storageCell);
     String getProductName(int productId);
+    List<String> getOrdersCoordinates();
 }

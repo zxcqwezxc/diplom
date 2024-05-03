@@ -18,13 +18,20 @@ public class GoodsRepositoryImpl implements GoodsRepository {
 
     private static final String SQL_GET_ALL_ITEMS = 
                                 "SELECT * from goods";
+    
+    private static final String SQL_GET_ALL_WAREHOUSES = 
+                                "SELECT * from warehouses";
         
     private final GoodsMapper goodsMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
+    private final ChartDataMapper chartDataMapper;
+    private final WarehouseMapper warehouseMapper;
 
-    public GoodsRepositoryImpl(GoodsMapper goodsMapper, NamedParameterJdbcTemplate jdbcTemplate) {
+    public GoodsRepositoryImpl(GoodsMapper goodsMapper, NamedParameterJdbcTemplate jdbcTemplate, ChartDataMapper chartDataMapper, WarehouseMapper warehouseMapper) {
         this.goodsMapper = goodsMapper;
         this.jdbcTemplate = jdbcTemplate;
+        this.chartDataMapper = chartDataMapper;
+        this.warehouseMapper = warehouseMapper;
     }
 
     @Override
@@ -68,4 +75,31 @@ public class GoodsRepositoryImpl implements GoodsRepository {
             jdbcTemplate.update(SQL_UPDATE_INSTORAGE, params);
         }
     }   
+
+    @Override
+    public List<ChartData> getChartData() {
+        final String SQL_GET_WAREHOUSES_DATA =
+            "SELECT name, free_cells, occupied_cells FROM warehouses";
+        return jdbcTemplate.query(SQL_GET_WAREHOUSES_DATA, chartDataMapper);
+    }
+
+    @Override
+    public List<Warehouse> getAllWarehouses() {
+        return jdbcTemplate.query(SQL_GET_ALL_WAREHOUSES, warehouseMapper);
+    }
+
+    @Override
+    public List<Item> getAllItemsById(int stockId) {
+        return jdbcTemplate.query(
+                "SELECT id, name, income, instorage, outcome, vendor_code FROM goods WHERE warehouse_id = " + stockId,
+                (resultSet, rowNum) -> new Item(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("income"),
+                        resultSet.getInt("instorage"),
+                        resultSet.getInt("outcome"),
+                        resultSet.getInt("vendor_code")
+                )
+        );
+    }
 }

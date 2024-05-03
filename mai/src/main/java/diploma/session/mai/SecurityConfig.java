@@ -3,6 +3,7 @@ package diploma.session.mai;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -25,6 +26,8 @@ public class SecurityConfig {
         users.createUser(user);
         return users;
     }
+
+    
 
     /*@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

@@ -24,7 +24,24 @@ public class GoodsServiceImpl implements GoodsService{
     }
 
     @Override
+    public List<Item> getAllItemsById(int id) {
+        return goodsRepository.getAllItemsById(id);
+    }
+
+    @Override
     public void addItem(Item item) {
         goodsRepository.addItem(item);
     }
+
+    @Override
+    public List<ChartData> getChartData() {
+        return goodsRepository.getChartData();
+    }
+
+    @Override
+    public List<Warehouse> getAllWarehouses() {
+        return goodsRepository.getAllWarehouses();
+    }
+
+    
 }

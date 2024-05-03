@@ -32,4 +32,9 @@ public class OrdersServiceImpl implements OrdersService{
     public String getProductName(int productId) {
         return ordersRepository.getProductName(productId);
     }
+
+    @Override
+    public List<String> getOrdersCoordinates() {
+        return ordersRepository.getOrdersCoordinates();
+    }
 }
